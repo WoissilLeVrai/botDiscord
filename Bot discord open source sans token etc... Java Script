@@ -1,0 +1,93 @@
+const Discord = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const Client = new Discord.Client({
+    intents: [
+        Discord.Intents.FLAGS.GUILDS,
+        Discord.Intents.FLAGS.GUILD_MESSAGES
+    ]
+})
+
+var data = new SlashCommandBuilder()
+    .setName("clear")
+    .setDescription("Nombre de messages que vous voulez supprimer !")
+    .setRequired(true)
+
+
+const prefix = "?";
+
+const data = new SlashCommandBuilder()
+    .setName("ban")
+    .setDescription("renvoie chez toi")
+    .addUserOption(option => option.setName("utilisateur").setDescription("utilisateur que vous souahitez mentionner")
+    .setRequired(false));
+
+Client.on("ready", () => {
+
+    Client.application.commands.create(data);
+    Client.guilds.cache.get("Mettre l'id du salon").commands.create(data);
+
+    console.log("bot opérationnel");
+});
+
+Client.on("interactionCreate", interaction => {
+    if(interaction.isCommand()){
+        if(interaction.commandName === "clear")
+            var number = interaction.options.getInteger("number");
+
+            if(number >= 1 && number <= 100{
+
+                }
+
+                }
+            {
+        }
+    }
+})
+
+Client.on("guildMemberAdd", member => { 
+    console.log("Un membre est arrivé. Bienvenue !");
+    Client.channels.cache.get("Mettre l'id du salon").send(member.displayName + " est arrivé.")
+});
+
+Client.on("guildMemberRemove", member => {
+    console.log("un membre a quitté le serveur Sniff.");
+    Client.channel.cache.get("Mettre l'id du salon").send(member.displayName + " a quitté le serveur Dommage.");
+    
+});
+
+Client.on("interactionCreate", Interaction => {
+    if(Interaction.isCommand()){
+        if(Interaction.commandName === "ban"){
+            let user = interaction.option.getUser("utilisateur");
+
+            if(user != undifined){
+                interaction.reply("ban <@" + user.id + ">");
+
+            }
+            else {
+                Interaction.reply("Mettre ici le message qu'il y aura");
+            }
+        } 
+    }
+});  
+
+
+Client.login("Mettre ici token du bot");
+
+Client.on("messageCreate", message => {
+    if (message.author.bot) return;
+
+    //?help
+    if(message.content === prefix + "help"){
+        const embed = new Discord.MessageEmbed()
+        .setColor("#FEFEFF")   
+        .setTitle("Liste des commandes")
+        .setDescription("Vous allez trouvez ici la liste des commandes du bot")
+        .addField("?help", "Affiche la liste des commandes");
+
+        message.channel.send({ embeds: [embed]})
+
+    }
+});
+
+ps : il peut contenir des fautes si vous ne connaisez pas javascript donc regardez une video avant de pratiquer !
